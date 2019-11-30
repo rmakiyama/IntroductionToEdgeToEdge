@@ -1,6 +1,7 @@
 package com.rmakiyama.introductiontoedgetoedge
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.root.layoutFullscreen()
+
         setSupportActionBar(binding.toolbar)
         setupRecyclerView()
 
@@ -34,5 +37,12 @@ class MainActivity : AppCompatActivity() {
         binding.listText.apply {
             adapter = this@MainActivity.adapter
         }
+    }
+
+    private fun View.layoutFullscreen() {
+        systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
     }
 }
