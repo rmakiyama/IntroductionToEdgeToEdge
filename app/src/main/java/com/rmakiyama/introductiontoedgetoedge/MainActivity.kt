@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import com.google.android.material.appbar.AppBarLayout
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun handlingInsets(view: View) {
         val fabMargin = resources.getDimensionPixelSize(R.dimen.fab_margin)
+        val listBottomPadding = binding.listText.paddingBottom
 
         ViewCompat.setOnApplyWindowInsetsListener(view) { _, insets ->
             binding.toolbar.updateLayoutParams<AppBarLayout.LayoutParams> {
@@ -63,6 +65,9 @@ class MainActivity : AppCompatActivity() {
                 rightMargin = fabMargin + insets.systemWindowInsetRight
                 bottomMargin = fabMargin + insets.systemWindowInsetBottom
             }
+            binding.listText.updatePadding(
+                bottom = insets.systemWindowInsetBottom + listBottomPadding
+            )
             insets
         }
     }
